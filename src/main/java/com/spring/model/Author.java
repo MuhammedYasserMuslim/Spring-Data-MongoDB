@@ -1,5 +1,8 @@
 package com.spring.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,15 +15,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collation = "authors")
+@Document(collection = "authors")
 
 public class Author {
 
     @Id
     private String id;
 
+
+    @NotEmpty
     private String name;
 
+    @Email
     private String email;
 
     private String phone;

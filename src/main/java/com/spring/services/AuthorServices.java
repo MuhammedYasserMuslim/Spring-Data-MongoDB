@@ -30,6 +30,9 @@ public class AuthorServices implements BaseServices<Author,String> {
     public Optional<Author> findById(String id) {
         return authorRepository.findById(id);
     }
+    public List<Author>  findByEmail(String email){
+        return authorRepository.getByEmail(email);
+    }
 
     @Override
     public void save(Author author) {

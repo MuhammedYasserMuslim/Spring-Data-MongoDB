@@ -2,12 +2,15 @@ package com.spring.controller;
 
 import com.spring.model.Author;
 import com.spring.services.AuthorServices;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@Validated
 @RestController
 @RequestMapping("/author")
 public class AuthorController {
@@ -25,13 +28,18 @@ public class AuthorController {
         return authorServices.findById(id);
     }
 
+    @GetMapping("/aut")
+    public List<Author>  findByEmail(@RequestParam String email){
+        return authorServices.findByEmail(email);
+    }
+
     @PostMapping("/authors")
-    public Author insertAuthor(@RequestBody Author author) {
+    public Author insertAuthor(@RequestBody @Valid Author author) {
         authorServices.save(author);
         return author;
     }
     @PutMapping("/authors")
-    public Author updateAuthor(@RequestBody Author author) {
+    public Author updateAuthor(@RequestBody @Valid  Author author) {
         authorServices.update(author);
         return author;
     }
